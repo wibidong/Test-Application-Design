@@ -1,0 +1,65 @@
+@startuml
+title API Flowchart
+
+start
+:Start;
+
+:Login;
+if (username and password is correct) then (yes)
+  :Get Token;
+  :Access API;
+  :End;
+else (no)
+  :Error: Incorrect username or password;
+  stop
+
+:Access API;
+:Loan Details;
+if (method is GET and endpoint is /loans) then (yes)
+  :Retrieve Information about all loans;
+  :End;
+else (no)
+  if (method is GET and endpoint is /loans/{id}) then (yes)
+    :Retrieve Information about a specific loan;
+    :End;
+  else (no)
+    :Error;
+    stop
+
+:Loan Details;
+if (method is POST and endpoint is /loans) then (yes)
+  :Create a new loan application;
+  :End;
+else (no)
+  :Error;
+  stop
+
+:Loan Details;
+if (method is PUT and endpoint is /loans/{id}) then (yes)
+  :Update information about a specific loan;
+  :End;
+else (no)
+  :Error;
+  stop
+
+:Repayment Details;
+if (method is GET and endpoint is /repayments) then (yes)
+  :Retrieve information about all repayments;
+  :End;
+else (no)
+  if (method is GET and endpoint is /repayments/{id}) then (yes)
+    :Retrieve information about a specific repayment;
+    :End;
+  else (no)
+    :Error;
+    stop
+
+:Notification;
+if (method is POST and endpoint is /notifications) then (yes)
+  :Create a new notification;
+  :End;
+else (no)
+  :Error;
+  stop
+
+@enduml

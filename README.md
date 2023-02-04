@@ -41,3 +41,36 @@ Potential High Level User Story:
 
 # ERD
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ssv3SCm343HFbCa0rZiKpc0HiW2j4J812HAu06ldwFwnI_URexgCVhjmL9wL0hjzzDzsHD0yKgD_OmZZBHCSH9FPGwu-E0wfS6RpBVNMfqBEa_PCXatWO4ia6U9GUB_ancRuW3IcjPFt4dgjny0)
+
+# API
+## API Flowchart
+![Use case diagram in PlantUML]()
+
+## API Definition
+Endpoint: /users/register
+Method: POST
+Description: Registers a new user by accepting their personal information such as directory, email, phone number, and photo of their ID card.
+
+Endpoint: /users/login
+Method: POST
+Description: Logs in an existing user by accepting their credentials such as email and password or using biometric authentication if available on their device.
+
+Endpoint: /debts
+Method: GET
+Description: Returns the remaining debt and monthly bills of the logged in user.
+
+Endpoint: /loans
+Method: POST
+Description: Accepts a loan application from a logged in user, including the loan amount and tenure.
+
+Endpoint: /loans/result
+Method: GET
+Description: Returns the result of a loan application, either accepted or rejected, and sends a notification via email and phone to the user.
+
+Endpoint: /loans/check
+Method: GET
+Description: Checks if the user has any ongoing loan application or loan that has not been settled, and denies the loan application if necessary.
+
+Endpoint: /loans/{loan_id}
+Method: GET
+Description: Returns the status of a specific loan, including the loan amount, remaining amount to be paid, and tenure.
