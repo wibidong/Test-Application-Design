@@ -210,26 +210,204 @@ Registers a new user by accepting their personal information such as directory, 
 - 409: Conflict - The provided email address is already in use by another user.
 
 
-Endpoint: /users/login
-Method: POST
-Description: Logs in an existing user by accepting their credentials such as email and password or using biometric authentication if available on their device.
+## Endpoint: /users/login
+### Method: POST
 
-Endpoint: /debts
-Method: GET
-Description: Returns the remaining debt and monthly bills of the logged in user.
+#### Description: 
+Logs in an existing user by accepting their credentials such as email and password or using biometric authentication if available on their device.
 
-Endpoint: /loans
-Method: POST
-Description: Accepts a loan application from a logged in user, including the loan amount and tenure.
+#### Request Body:
+{
+"email": "user@example.com",
+"password": "secret"
+}
 
-Endpoint: /loans/result
-Method: GET
-Description: Returns the result of a loan application, either accepted or rejected, and sends a notification via email and phone to the user.
+#### Security: 
+This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token is included in the response and should be passed in the `Authorization` header for subsequent requests to protected endpoints.
 
-Endpoint: /loans/check
-Method: GET
-Description: Checks if the user has any ongoing loan application or loan that has not been settled, and denies the loan application if necessary.
+#### Response:
+HTTP Status: 200 OK
+{
+  "message": "Login Successful",
+  "user": {
+    "User_ID": 1,
+    "Name": "John Doe",
+    "Email": "johndoe@example.com",
+    "Phone": "+123456789",
+    "Profile_Picture": "https://example.com/profile_picture.jpeg",
+    "KTP": "123456789012345678",
+    "Address": "123 Main Street, New York, NY 10001"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1MTYyMzkwMjJ9.8iPQQzMUbL-CnJO9Y9Nxig8vDRhKAmIq3bLixFzWtjA"
+}
+HTTP Status: 401 Unauthorized
+{
+  "message": "Incorrect Email or Password"
+}
 
-Endpoint: /loans/{loan_id}
-Method: GET
-Description: Returns the status of a specific loan, including the loan amount, remaining amount to be paid, and tenure.
+## Endpoint: /debts
+### Method: GET
+### Description:
+Returns the remaining debt and monthly bills of the logged in user.
+#### Security:
+This endpoint requires authentication. The JSON Web Token (JWT) should be passed in the Authorization header.
+
+#### Response:
+HTTP Status: 200 OK
+{
+"message": "Debts retrieved successfully",
+"debts": [
+{
+"Debt_ID": 1,
+"Name": "Credit Card",
+"Amount": 5000,
+"Due_Date": "2022-12-31",
+"Monthly_Payment": 500
+},
+{
+"Debt_ID": 2,
+"Name": "Car Loan",
+"Amount": 20000,
+"Due_Date": "2025-12-31",
+"Monthly_Payment": 1000
+}
+]
+}
+
+HTTP Status: 401 Unauthorized
+{
+"message": "Access Denied. Please Login First"
+}
+
+## Endpoint: /loans
+### Method: POST
+### Description:
+Accepts a loan application from a logged in user, including the loan amount and tenure.
+
+#### Request Body:
+{
+  "loan_amount": 1000,
+  "tenure": 12
+}
+
+
+#### Security:
+This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
+
+#### Response:
+HTTP Status: 201 Created
+{
+"message": "Loan application submitted successfully",
+"loan_application": {
+"Loan_ID": 1,
+"User_ID": 1,
+"Amount": 1000,
+"Tenure": 12,
+"Status": "Pending"
+}
+}
+
+HTTP Status: 400 Bad Request
+{
+"message": "Invalid request body"
+}
+
+HTTP Status: 401 Unauthorized
+{
+"message": "Please provide a valid JSON Web Token in the Authorization header"
+}
+
+## Endpoint: /loans/result
+### Method: GET
+### Description:
+Returns the result of a loan application, either accepted or rejected, and sends a notification via email and phone to the user.
+
+#### Request Query:
+loan_ID: The ID of the loan application to retrieve the result of.
+#### Security:
+This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token should be passed in the Authorization header.
+
+#### Response:
+HTTP Status: 200 OK
+{
+"message": "Loan Result",
+"loan": {
+"Loan_ID": 1,
+"Amount": 1000,
+"Tenure": 12,
+"Result": "Accepted"
+}
+}
+HTTP Status: 404 Not Found
+{
+"message": "Loan Result Not Found"
+}
+HTTP Status: 401 Unauthorized
+{
+"message": "Unauthorized Access"
+}
+
+## Endpoint: /loans/check
+### Method: GET
+### Description:
+Checks if the user has any ongoing loan application or loan that has not been settled, and denies the loan application if necessary.
+
+#### Request Query:
+GET /loans/check?user_id=1
+Where user_id is the identifier of the user making the request.
+
+#### Security:
+This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token should be passed in the Authorization header with a value of Bearer <token>.
+
+#### Response:
+HTTP Status: 200 OK
+{
+"message": "Ongoing Loan Application found",
+"details": {
+"Loan_ID": 1,
+"Amount": 5000,
+"Tenure": 12,
+"Status": "Pending"
+}
+}
+
+HTTP Status: 200 OK
+{
+"message": "No ongoing loan application found"
+}
+
+HTTP Status: 401 Unauthorized
+{
+"message": "Invalid Token"
+}
+
+## Endpoint: /loans/{loan_id}
+### Method: GET
+#### Description:
+Returns the status of a specific loan, including the loan amount, remaining amount to be paid, and tenure.
+
+#### Request Parameters:
+loan_id (required, integer): The ID of the loan for which the status is requested.
+#### Security:
+This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token must be passed in the Authorization header with the format Bearer [token] in order to access the protected endpoint.
+
+#### Response:
+HTTP Status: 200 OK
+{
+"Loan_ID": 1,
+"User_ID": 1,
+"Amount": 100000,
+"Remaining_Amount": 50000,
+"Tenure": 12,
+"Status": "Ongoing"
+}
+
+HTTP Status: 401 Unauthorized
+{
+"message": "Access Denied. You must be logged in to access this endpoint."
+}
+
+HTTP Status: 404 Not Found
+{
+"message": "Loan with ID 1 not found."
+}
