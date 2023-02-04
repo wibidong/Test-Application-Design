@@ -1,0 +1,19 @@
+@startuml
+title Use Case Diagram for Loan Application
+left to right direction
+
+actor User as U
+rectangle "Loan Application" as LA
+
+U -- (Registers)
+U -- (Logs In)
+U -- (Views Loan Status)
+U -- (Applies for Loan)
+U -- (Receives Loan Approval)
+
+LA -down-> (Stores User Data)
+LA -down-> (Authenticates User)
+LA -down-> (Calculates Loan Eligibility)
+LA -down-> (Notifies User)
+
+@enduml

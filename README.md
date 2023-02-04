@@ -6,7 +6,7 @@ Test Application Design PT. XYZ
 * **Hermanus Wibisono**  - [wibidong](https://github.com/wibidong)
 
 # Problem description
-Test Application Design
+
 PT. XYZ is a fintech company that wants to develop their mobile apps, in an effort to reach a wider user base they want to develop an online loan application.
 Potential High Level User Story:
 
@@ -24,3 +24,14 @@ Potential High Level User Story:
 3. Create detailed API design using design tools such as UML, ERD, flowchart, etc.
 4. Create a detailed screen behavior design for the mobile app based on the screen flow above.
 
+# User Stories
+1. As a potential user, I want to be able to register for the mobile app so I can start using the online loan services.
+2. As a registered user, I want to be able to log in to the app either with a password or biometric for convenience and security.
+3. As a logged in user, I want to be able to view my remaining debt and monthly bills so I can keep track of my financial status.
+4. As a logged in user, I want to be able to apply for a loan up to Rp. 12,000,000 with a maximum tenure of 1 year.
+5. As a loan applicant, I want to be notified via email and phone if my loan application is accepted or rejected.
+6. As a loan borrower, I want to be unable to apply for another loan if I still have an ongoing loan that has not been settled.
+7. As a loan borrower, I want to be able to see the amount of loan I have borrowed and the amount I still need to pay.
+
+# Use Case
+![Use case diagram in PlantUML]
