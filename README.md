@@ -191,6 +191,7 @@ Relationships:
 Registers a new user by accepting their personal information such as directory, email, phone number, and photo of their ID card.
 
 ### Request Body:
+```json
 {
   "name": "string",
   "email": "string",
@@ -200,6 +201,7 @@ Registers a new user by accepting their personal information such as directory, 
   "profile_picture": "string",
   "ktp": "string"
 }
+```
 ### Security:
 - API requests must include a valid JSON Web Token (JWT) in the header to authenticate the user.
 - The password must be hashed using a secure algorithm such as bcrypt before being stored in the database.
@@ -217,16 +219,19 @@ Registers a new user by accepting their personal information such as directory, 
 Logs in an existing user by accepting their credentials such as email and password or using biometric authentication if available on their device.
 
 #### Request Body:
+```json
 {
 "email": "user@example.com",
 "password": "secret"
 }
+```
 
 #### Security: 
 This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token is included in the response and should be passed in the `Authorization` header for subsequent requests to protected endpoints.
 
 #### Response:
 HTTP Status: 200 OK
+```json
 {
   "message": "Login Successful",
   "user": {
@@ -240,10 +245,13 @@ HTTP Status: 200 OK
   },
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1MTYyMzkwMjJ9.8iPQQzMUbL-CnJO9Y9Nxig8vDRhKAmIq3bLixFzWtjA"
 }
+```
 HTTP Status: 401 Unauthorized
+```json
 {
   "message": "Incorrect Email or Password"
 }
+```
 
 ## Endpoint: /debts
 ### Method: GET
@@ -254,6 +262,7 @@ This endpoint requires authentication. The JSON Web Token (JWT) should be passed
 
 #### Response:
 HTTP Status: 200 OK
+```json
 {
 "message": "Debts retrieved successfully",
 "debts": [
@@ -273,11 +282,13 @@ HTTP Status: 200 OK
 }
 ]
 }
-
+```
 HTTP Status: 401 Unauthorized
+```json
 {
 "message": "Access Denied. Please Login First"
 }
+```
 
 ## Endpoint: /loans
 ### Method: POST
@@ -285,17 +296,19 @@ HTTP Status: 401 Unauthorized
 Accepts a loan application from a logged in user, including the loan amount and tenure.
 
 #### Request Body:
+```json
 {
   "loan_amount": 1000,
   "tenure": 12
 }
-
+```
 
 #### Security:
 This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
 
 #### Response:
 HTTP Status: 201 Created
+```json
 {
 "message": "Loan application submitted successfully",
 "loan_application": {
@@ -306,16 +319,21 @@ HTTP Status: 201 Created
 "Status": "Pending"
 }
 }
+```
 
 HTTP Status: 400 Bad Request
+```json
 {
 "message": "Invalid request body"
 }
+```
 
 HTTP Status: 401 Unauthorized
+```json
 {
 "message": "Please provide a valid JSON Web Token in the Authorization header"
 }
+```
 
 ## Endpoint: /loans/result
 ### Method: GET
@@ -329,6 +347,7 @@ This endpoint uses JSON Web Token (JWT) for authentication and authorization. Th
 
 #### Response:
 HTTP Status: 200 OK
+```json
 {
 "message": "Loan Result",
 "loan": {
@@ -346,6 +365,7 @@ HTTP Status: 401 Unauthorized
 {
 "message": "Unauthorized Access"
 }
+```
 
 ## Endpoint: /loans/check
 ### Method: GET
@@ -361,6 +381,7 @@ This endpoint uses JSON Web Token (JWT) for authentication and authorization. Th
 
 #### Response:
 HTTP Status: 200 OK
+```json
 {
 "message": "Ongoing Loan Application found",
 "details": {
@@ -370,16 +391,19 @@ HTTP Status: 200 OK
 "Status": "Pending"
 }
 }
-
+```
 HTTP Status: 200 OK
+```json
 {
 "message": "No ongoing loan application found"
 }
-
+```
 HTTP Status: 401 Unauthorized
+```json
 {
 "message": "Invalid Token"
 }
+```
 
 ## Endpoint: /loans/{loan_id}
 ### Method: GET
@@ -393,6 +417,7 @@ This endpoint uses JSON Web Token (JWT) for authentication and authorization. Th
 
 #### Response:
 HTTP Status: 200 OK
+```json
 {
 "Loan_ID": 1,
 "User_ID": 1,
@@ -401,13 +426,18 @@ HTTP Status: 200 OK
 "Tenure": 12,
 "Status": "Ongoing"
 }
+```
 
 HTTP Status: 401 Unauthorized
+```json
 {
 "message": "Access Denied. You must be logged in to access this endpoint."
 }
+```
 
 HTTP Status: 404 Not Found
+```json
 {
 "message": "Loan with ID 1 not found."
 }
+```
