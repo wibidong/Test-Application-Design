@@ -184,7 +184,8 @@ System reviews the loan application.
 22. Loan Application Result:
 User is presented with the result of their loan application, either approved or rejected.
 23. Loan Approval:
-If the loan application is approved, the user is notified via email and phone.
+- If the loan application is approved, the user is notified via email and phone.
+- If the loan application is rejected, the user also notified via email and phone.
 24. Loan Disbursement:
 If the loan application is approved, the loan amount is disbursed to the borrower's account.
 25. Loan Repayment:
