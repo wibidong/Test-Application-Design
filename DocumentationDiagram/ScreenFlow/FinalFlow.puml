@@ -1,0 +1,90 @@
+@startuml
+title Loan Management Mobile Apps Screen Flow
+
+start
+:Start;
+
+:Welcome Screen;
+
+if (Registered User) then (no)
+    :Click on Register;
+    :Register Screen;
+    :Enter Personal Information;
+    :Enter Email, Phone Number and Upload Photo;
+    :Click on Register Button;
+    :Verification;
+    :Verification Successful;
+    :Login Screen;
+    :Home Screen;
+    
+else (yes)
+    :User enters their email and password or uses biometric authentication;
+
+    if (biometric authentication is available) then (yes)
+        :System checks if the user credentials are correct;
+
+    else (no)
+        if (using username and password is correct) then (yes)
+            :System checks if the user credentials are correct;
+        else (no)
+            :Error: Incorrect username or password;
+            stop
+
+            :System checks if the user credentials are correct;
+            if (yes) then (User credentials are correct)
+                :System logs the user in;
+                :Dashboard;
+            else (User credentials are incorrect)
+                :System displays an error message;
+                stop
+
+                :Dashboard;
+                :View Loan Information;
+                :Loan Information;
+                :Current Loan Details;
+                :Loan Amount Borrowed;
+                :Loan Amount Remaining;
+                :Apply for Loan;
+                :Loan Application Form;
+                :Enter Loan Amount;
+                if(Loan Amount > 12.000.000) then (yes)
+                    :Error: Amount Can't > 12.000.000;
+                else (no)
+                    :Select Tenure;
+                    if(Tenure > 1 Year) then (yes)
+                        :Error: Tenure Can't > 1 Year;
+                    else (no)
+                        :Review Information;
+                        :Submit Loan Application;
+                        :View Loan Status;
+                        if (Loan Status is Ongoing) then (yes)
+                            :Error: Loan Ongoing;
+                        else (no)
+                            :Apply for Loan;
+                            if (Loan Eligibility Check) then (no)
+                                :Error: Loan Eligibility Check Failed;
+                            else (yes)
+                                :System Review;
+                                :Loan Application Result;
+                                if (Loan Application is Approved) then (yes)
+                                    :Loan Approved;
+                                else (no)
+                                    :Loan Rejected;
+                                    :System Review;
+                                    if (loan application is accepted) then (no)
+                                        :Notification via Email and Phone: Loan Application Rejected;
+                                    else (yes)
+                                        :Loan Approval;
+                                        :Notification via Email and Phone: Loan Application Accepted;
+                                        if (Loan Application Approved) then (yes)
+                                            :Notify via Email and Phone;
+                                            :Loan Approval;
+                                            :Disburse Loan;
+                                            :Loan Repayment;
+                                            :End;
+                                        else (no)
+                                            :Notify via Email and Phone;
+                                            :Loan Rejection;
+                                            :End;
+
+                                            @enduml
