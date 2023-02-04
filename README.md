@@ -42,6 +42,68 @@ Potential High Level User Story:
 # Screen Flow Design
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ox13S8m303_J043jFxpAbBL1M01DxLIIuaTERQoFfJNdNIVMxgZUTHoUx2a4WU5bVlftleJm73CcVsCFJfPKd4IdvDM6BppePBXGzsdLsk54pghJ2jrpW8LMM3L59N4_sLbp8OLtic8P2iwO6F1SjdSheM5vFZn2m00)
 
+# Screen Behavior
+1. Start Screen:
+User is presented with the start screen of the loan management mobile app.
+2. Welcome Screen:
+User is welcomed to the app and given the option to either register or login if they are a registered user.
+3. Register Screen:
+- If the user is not a registered user, they can click on the "Register" button and be redirected to the Register Screen.
+- User enters their personal information, email, phone number, and uploads a photo.
+- User clicks on the "Register" button to complete the registration process.
+4. Verification:
+User's information is verified by the system.
+5. Verification Successful:
+If verification is successful, the user is redirected to the Login Screen.
+6. Login Screen:
+User enters their email and password or uses biometric authentication.
+7. System Login Check:
+- System checks if the user credentials are correct.
+- If the credentials are incorrect, the system displays an error message and the user cannot proceed to the Home Screen.
+- If the credentials are correct, the system logs the user in and redirects them to the Home Screen.
+8. Home Screen:
+User is now on the Home Screen of the app where they can view their loan information, apply for a loan, and view the status of their loan application.
+9. View Loan Information:
+User clicks on the "View Loan Information" button to view their current loan details.
+10. Loan Information:
+User is presented with information about their loan, including the loan amount borrowed, loan amount remaining, and loan tenure.
+11. Apply for Loan:
+User clicks on the "Apply for Loan" button to apply for a new loan.
+12. Loan Application Form:
+User enters the loan amount they would like to apply for.
+13. Loan Amount Check:
+- System checks if the loan amount entered is greater than 12.000.000.
+- If the loan amount is greater than 12.000.000, the system displays an error message and the user cannot proceed with the application.
+14. Select Tenure:
+User selects the loan tenure.
+15. Tenure Check:
+- System checks if the loan tenure selected is greater than 1 year.
+- If the loan tenure is greater than 1 year, the system displays an error message and the user cannot proceed with the application.
+16. Review Information:
+User reviews the information they have entered in the loan application form.
+17. Submit Loan Application:
+User submits the loan application.
+18. View Loan Status:
+User clicks on the "View Loan Status" button to view the status of their loan application.
+19. Loan Status Check:
+- System checks if the loan status is ongoing.
+- If the loan status is ongoing, the system displays an error message and the user cannot apply for another loan.
+20. Loan Eligibility Check:
+- System checks if the user is eligible for the loan they have applied for.
+- If the user is not eligible, the system displays an error message and the loan application is rejected.
+21. System Review:
+System reviews the loan application.
+22. Loan Application Result:
+User is presented with the result of their loan application, either approved or rejected.
+23. Loan Approval:
+If the loan application is approved, the user is notified via email and phone.
+24. Loan Disbursement:
+If the loan application is approved, the loan amount is disbursed to the borrower's account.
+25. Loan Repayment:
+The borrower then repays the loan according to the terms agreed upon in the loan application process.
+26. End:
+The loan management process is complete, and the user can view their loan information at any time through the mobile app.
+
 # ERD
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ssv3SCm343HFbCa0rZiKpc0HiW2j4J812HAu06ldwFwnI_URexgCVhjmL9wL0hjzzDzsHD0yKgD_OmZZBHCSH9FPGwu-E0wfS6RpBVNMfqBEa_PCXatWO4ia6U9GUB_ancRuW3IcjPFt4dgjny0)
 
