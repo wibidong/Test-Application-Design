@@ -1,7 +1,57 @@
-# Test-Application-Design
+<!-- vscode-markdown-toc -->
+* 1. [Authors](#Authors)
+* 2. [API Flowchart](#APIFlowchart)
+* 3. [API Definition](#APIDefinition)
+* 4. [Endpoint: /users/register](#Endpoint:usersregister)
+	* 4.1. [Method: POST](#Method:POST)
+	* 4.2. [Description:](#Description:)
+	* 4.3. [Request Body:](#RequestBody:)
+	* 4.4. [Security:](#Security:)
+	* 4.5. [Responses:](#Responses:)
+* 5. [Endpoint: /users/login](#Endpoint:userslogin)
+	* 5.1. [Method: POST](#Method:POST-1)
+		* 5.1.1. [Description:](#Description:-1)
+		* 5.1.2. [Request Body:](#RequestBody:-1)
+		* 5.1.3. [Security:](#Security:-1)
+		* 5.1.4. [Response:](#Response:)
+* 6. [Endpoint: /debts](#Endpoint:debts)
+	* 6.1. [Method: GET](#Method:GET)
+	* 6.2. [Description:](#Description:-1)
+		* 6.2.1. [Security:](#Security:-1)
+		* 6.2.2. [Response:](#Response:-1)
+* 7. [Endpoint: /loans](#Endpoint:loans)
+	* 7.1. [Method: POST](#Method:POST-1)
+	* 7.2. [Description:](#Description:-1)
+		* 7.2.1. [Request Body:](#RequestBody:-1)
+		* 7.2.2. [Security:](#Security:-1)
+		* 7.2.3. [Response:](#Response:-1)
+* 8. [Endpoint: /loans/result](#Endpoint:loansresult)
+	* 8.1. [Method: GET](#Method:GET-1)
+	* 8.2. [Description:](#Description:-1)
+		* 8.2.1. [Request Query:](#RequestQuery:)
+		* 8.2.2. [Security:](#Security:-1)
+		* 8.2.3. [Response:](#Response:-1)
+* 9. [Endpoint: /loans/check](#Endpoint:loanscheck)
+	* 9.1. [Method: GET](#Method:GET-1)
+	* 9.2. [Description:](#Description:-1)
+		* 9.2.1. [Request Query:](#RequestQuery:-1)
+		* 9.2.2. [Security:](#Security:-1)
+		* 9.2.3. [Response:](#Response:-1)
+* 10. [Endpoint: /loans/{loan_id}](#Endpoint:loansloan_id)
+	* 10.1. [Method: GET](#Method:GET-1)
+		* 10.1.1. [Description:](#Description:-1)
+		* 10.1.2. [Request Parameters:](#RequestParameters:)
+		* 10.1.3. [Security:](#Security:-1)
+		* 10.1.4. [Response:](#Response:-1)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc --># Test-Application-Design
 Test Application Design PT. XYZ 
 
-## Authors
+##  1. <a name='Authors'></a>Authors
 
 * **Hermanus Wibisono**  - [wibidong](https://github.com/wibidong)
 
@@ -181,16 +231,16 @@ Relationships:
 3. A User can receive multiple Notifications.
 
 # API
-## API Flowchart
+##  2. <a name='APIFlowchart'></a>API Flowchart
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Sqz2iCm343XlQTe3v1exvH0A7Jhq0ieZd04jcHa2L-_FzCRtl0jtT4yQhdSM5A9WyBAzNHl_GvWEERCViOUdIofE8dFIIiCtlbGoV2cxjFQMk64pYhJHfspG4KMs3H59V7_sHYpOONrzPmUHKSwqNnkFtiXERxz0000)
 
-## API Definition
-## Endpoint: /users/register
-### Method: POST
-### Description: 
+##  3. <a name='APIDefinition'></a>API Definition
+##  4. <a name='Endpoint:usersregister'></a>Endpoint: /users/register
+###  4.1. <a name='Method:POST'></a>Method: POST
+###  4.2. <a name='Description:'></a>Description: 
 Registers a new user by accepting their personal information such as directory, email, phone number, and photo of their ID card.
 
-### Request Body:
+###  4.3. <a name='RequestBody:'></a>Request Body:
 ```json
 {
   "name": "string",
@@ -202,23 +252,23 @@ Registers a new user by accepting their personal information such as directory, 
   "ktp": "string"
 }
 ```
-### Security:
+###  4.4. <a name='Security:'></a>Security:
 - API requests must include a valid JSON Web Token (JWT) in the header to authenticate the user.
 - The password must be hashed using a secure algorithm such as bcrypt before being stored in the database.
-### Responses:
+###  4.5. <a name='Responses:'></a>Responses:
 - 201: Created - The user was successfully registered.
 - 400: Bad Request - The request body was malformed or missing required fields.
 - 401: Unauthorized - The provided JWT was invalid or has expired.
 - 409: Conflict - The provided email address is already in use by another user.
 
 
-## Endpoint: /users/login
-### Method: POST
+##  5. <a name='Endpoint:userslogin'></a>Endpoint: /users/login
+###  5.1. <a name='Method:POST-1'></a>Method: POST
 
-#### Description: 
+####  5.1.1. <a name='Description:-1'></a>Description: 
 Logs in an existing user by accepting their credentials such as email and password or using biometric authentication if available on their device.
 
-#### Request Body:
+####  5.1.2. <a name='RequestBody:-1'></a>Request Body:
 ```json
 {
 "email": "user@example.com",
@@ -226,10 +276,10 @@ Logs in an existing user by accepting their credentials such as email and passwo
 }
 ```
 
-#### Security: 
+####  5.1.3. <a name='Security:-1'></a>Security: 
 This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token is included in the response and should be passed in the `Authorization` header for subsequent requests to protected endpoints.
 
-#### Response:
+####  5.1.4. <a name='Response:'></a>Response:
 HTTP Status: 200 OK
 ```json
 {
@@ -253,14 +303,14 @@ HTTP Status: 401 Unauthorized
 }
 ```
 
-## Endpoint: /debts
-### Method: GET
-### Description:
+##  6. <a name='Endpoint:debts'></a>Endpoint: /debts
+###  6.1. <a name='Method:GET'></a>Method: GET
+###  6.2. <a name='Description:-1'></a>Description:
 Returns the remaining debt and monthly bills of the logged in user.
-#### Security:
+####  6.2.1. <a name='Security:-1'></a>Security:
 This endpoint requires authentication. The JSON Web Token (JWT) should be passed in the Authorization header.
 
-#### Response:
+####  6.2.2. <a name='Response:-1'></a>Response:
 HTTP Status: 200 OK
 ```json
 {
@@ -290,12 +340,12 @@ HTTP Status: 401 Unauthorized
 }
 ```
 
-## Endpoint: /loans
-### Method: POST
-### Description:
+##  7. <a name='Endpoint:loans'></a>Endpoint: /loans
+###  7.1. <a name='Method:POST-1'></a>Method: POST
+###  7.2. <a name='Description:-1'></a>Description:
 Accepts a loan application from a logged in user, including the loan amount and tenure.
 
-#### Request Body:
+####  7.2.1. <a name='RequestBody:-1'></a>Request Body:
 ```json
 {
   "loan_amount": 1000,
@@ -303,10 +353,10 @@ Accepts a loan application from a logged in user, including the loan amount and 
 }
 ```
 
-#### Security:
+####  7.2.2. <a name='Security:-1'></a>Security:
 This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
 
-#### Response:
+####  7.2.3. <a name='Response:-1'></a>Response:
 HTTP Status: 201 Created
 ```json
 {
@@ -335,17 +385,17 @@ HTTP Status: 401 Unauthorized
 }
 ```
 
-## Endpoint: /loans/result
-### Method: GET
-### Description:
+##  8. <a name='Endpoint:loansresult'></a>Endpoint: /loans/result
+###  8.1. <a name='Method:GET-1'></a>Method: GET
+###  8.2. <a name='Description:-1'></a>Description:
 Returns the result of a loan application, either accepted or rejected, and sends a notification via email and phone to the user.
 
-#### Request Query:
+####  8.2.1. <a name='RequestQuery:'></a>Request Query:
 loan_ID: The ID of the loan application to retrieve the result of.
-#### Security:
+####  8.2.2. <a name='Security:-1'></a>Security:
 This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token should be passed in the Authorization header.
 
-#### Response:
+####  8.2.3. <a name='Response:-1'></a>Response:
 HTTP Status: 200 OK
 ```json
 {
@@ -367,19 +417,19 @@ HTTP Status: 401 Unauthorized
 }
 ```
 
-## Endpoint: /loans/check
-### Method: GET
-### Description:
+##  9. <a name='Endpoint:loanscheck'></a>Endpoint: /loans/check
+###  9.1. <a name='Method:GET-1'></a>Method: GET
+###  9.2. <a name='Description:-1'></a>Description:
 Checks if the user has any ongoing loan application or loan that has not been settled, and denies the loan application if necessary.
 
-#### Request Query:
+####  9.2.1. <a name='RequestQuery:-1'></a>Request Query:
 GET /loans/check?user_id=1
 Where user_id is the identifier of the user making the request.
 
-#### Security:
+####  9.2.2. <a name='Security:-1'></a>Security:
 This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token should be passed in the Authorization header with a value of Bearer <token>.
 
-#### Response:
+####  9.2.3. <a name='Response:-1'></a>Response:
 HTTP Status: 200 OK
 ```json
 {
@@ -405,17 +455,17 @@ HTTP Status: 401 Unauthorized
 }
 ```
 
-## Endpoint: /loans/{loan_id}
-### Method: GET
-#### Description:
+##  10. <a name='Endpoint:loansloan_id'></a>Endpoint: /loans/{loan_id}
+###  10.1. <a name='Method:GET-1'></a>Method: GET
+####  10.1.1. <a name='Description:-1'></a>Description:
 Returns the status of a specific loan, including the loan amount, remaining amount to be paid, and tenure.
 
-#### Request Parameters:
+####  10.1.2. <a name='RequestParameters:'></a>Request Parameters:
 loan_id (required, integer): The ID of the loan for which the status is requested.
-#### Security:
+####  10.1.3. <a name='Security:-1'></a>Security:
 This endpoint uses JSON Web Token (JWT) for authentication and authorization. The token must be passed in the Authorization header with the format Bearer [token] in order to access the protected endpoint.
 
-#### Response:
+####  10.1.4. <a name='Response:-1'></a>Response:
 HTTP Status: 200 OK
 ```json
 {
