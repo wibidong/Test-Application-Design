@@ -203,9 +203,9 @@ User Entity
 | Name             | Text      | Required  | Name of the user                                       |
 | Email            | Text      | Required  | Email address of the user                              |
 | Phone            | Text      | Required  | Phone number of the user                               |
-| Address          | Text      | Optional  | Address of the user                                    |
-| Profile_Picture  | Text      | Optional  | Profile picture of the user                            |
-| KTP              | Text      | Optional  | KTP number of the user                                 |
+| Address          | Text      | Required  | Address of the user                                    |
+| Profile_Picture  | Text      | Required  | Profile picture of the user                            |
+| KTP              | Text      | Required  | KTP number of the user                                 |
 | Password         | Text      | Required  | Password of the user                                   |
 
 Loan Entity
