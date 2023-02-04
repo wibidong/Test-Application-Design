@@ -44,7 +44,7 @@ Potential High Level User Story:
 
 # API
 ## API Flowchart
-![Use case diagram in PlantUML]()
+![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Sqz2iCm343XlQTe3v1exvH0A7Jhq0ieZd04jcHa2L-_FzCRtl0jtT4yQhdSM5A9WyBAzNHl_GvWEERCViOUdIofE8dFIIiCtlbGoV2cxjFQMk64pYhJHfspG4KMs3H59V7_sHYpOONrzPmUHKSwqNnkFtiXERxz0000)
 
 ## API Definition
 Endpoint: /users/register
