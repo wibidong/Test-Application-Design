@@ -15,9 +15,9 @@ if (Registered User) then (no)
     :Verification;
     :Verification Successful;
     :Login Screen;
-    :Home Screen;
-    
+
 else (yes)
+    :Login Screen;
     :User enters their email and password or uses biometric authentication;
 
     if (biometric authentication is available) then (yes)
@@ -31,10 +31,10 @@ else (yes)
             stop
 
             :System checks if the user credentials are correct;
-            if (yes) then (User credentials are correct)
+            if (User credentials verification) then (correct)
                 :System logs the user in;
                 :Dashboard;
-            else (User credentials are incorrect)
+            else (incorrect)
                 :System displays an error message;
                 stop
 
@@ -49,42 +49,34 @@ else (yes)
                 :Enter Loan Amount;
                 if(Loan Amount > 12.000.000) then (yes)
                     :Error: Amount Can't > 12.000.000;
+                    :End;
                 else (no)
-                    :Select Tenure;
-                    if(Tenure > 1 Year) then (yes)
-                        :Error: Tenure Can't > 1 Year;
+                    :Select Tenor;
+                    if(Tenor > 1 Year) then (yes)
+                        :Error: Tenor Can't > 1 Year;
+                        :End;
                     else (no)
                         :Review Information;
                         :Submit Loan Application;
                         :View Loan Status;
                         if (Loan Status is Ongoing) then (yes)
                             :Error: Loan Ongoing;
+                            :End;
                         else (no)
                             :Apply for Loan;
                             if (Loan Eligibility Check) then (no)
                                 :Error: Loan Eligibility Check Failed;
                             else (yes)
                                 :System Review;
-                                :Loan Application Result;
-                                if (Loan Application is Approved) then (yes)
-                                    :Loan Approved;
+                                if (Loan Application Approved) then (yes)
+                                    :Notify via Email and Phone;
+                                    :Loan Approval;
+                                    :Disburse Loan;
+                                    :Loan Repayment;
+                                    :End;
                                 else (no)
-                                    :Loan Rejected;
-                                    :System Review;
-                                    if (loan application is accepted) then (no)
-                                        :Notification via Email and Phone: Loan Application Rejected;
-                                    else (yes)
-                                        :Loan Approval;
-                                        :Notification via Email and Phone: Loan Application Accepted;
-                                        if (Loan Application Approved) then (yes)
-                                            :Notify via Email and Phone;
-                                            :Loan Approval;
-                                            :Disburse Loan;
-                                            :Loan Repayment;
-                                            :End;
-                                        else (no)
-                                            :Notify via Email and Phone;
-                                            :Loan Rejection;
-                                            :End;
+                                    :Notify via Email and Phone;
+                                    :Loan Rejection;
+                                    :End;
 
-                                            @enduml
+                                    @enduml

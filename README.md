@@ -74,7 +74,7 @@ Potential High Level User Story:
 1. User performs registration with data directory, email, phone number, and uploads a photo along with the ID card
 2. User can log in with a password or biometric (if available on their mobile device)
 3. User can view the remaining debt and monthly bills that must be paid (if any)
-4. User can borrow up to Rp. 12,000,000 with a maximum tenure of 1 year.
+4. User can borrow up to Rp. 12,000,000 with a maximum Tenor of 1 year.
 5. During the loan application process, the result will be accepted or rejected
 6. If the loan is accepted, there will be a notification via email and registered phone number
 7. User cannot take out a loan if there is an ongoing loan application and has not been settled.
@@ -89,7 +89,7 @@ Potential High Level User Story:
 1. As a potential user, I want to be able to register for the mobile app so I can start using the online loan services.
 2. As a registered user, I want to be able to log in to the app either with a password or biometric for convenience and security.
 3. As a logged in user, I want to be able to view my remaining debt and monthly bills so I can keep track of my financial status.
-4. As a logged in user, I want to be able to apply for a loan up to Rp. 12,000,000 with a maximum tenure of 1 year.
+4. As a logged in user, I want to be able to apply for a loan up to Rp. 12,000,000 with a maximum Tenor of 1 year.
 5. As a loan applicant, I want to be notified via email and phone if my loan application is accepted or rejected.
 6. As a loan borrower, I want to be unable to apply for another loan if I still have an ongoing loan that has not been settled.
 7. As a loan borrower, I want to be able to see the amount of loan I have borrowed and the amount I still need to pay.
@@ -154,7 +154,7 @@ User is now on the Home Screen of the app where they can view their loan informa
 9. View Loan Information:
 User clicks on the "View Loan Information" button to view their current loan details.
 10. Loan Information:
-User is presented with information about their loan, including the loan amount borrowed, loan amount remaining, and loan tenure.
+User is presented with information about their loan, including the loan amount borrowed, loan amount remaining, and loan Tenor.
 11. Apply for Loan:
 User clicks on the "Apply for Loan" button to apply for a new loan.
 12. Loan Application Form:
@@ -162,11 +162,11 @@ User enters the loan amount they would like to apply for.
 13. Loan Amount Check:
 - System checks if the loan amount entered is greater than 12.000.000.
 - If the loan amount is greater than 12.000.000, the system displays an error message and the user cannot proceed with the application.
-14. Select Tenure:
-User selects the loan tenure.
-15. Tenure Check:
-- System checks if the loan tenure selected is greater than 1 year.
-- If the loan tenure is greater than 1 year, the system displays an error message and the user cannot proceed with the application.
+14. Select Tenor:
+User selects the loan Tenor.
+15. Tenor Check:
+- System checks if the loan Tenor selected is greater than 1 year.
+- If the loan Tenor is greater than 1 year, the system displays an error message and the user cannot proceed with the application.
 16. Review Information:
 User reviews the information they have entered in the loan application form.
 17. Submit Loan Application:
@@ -354,13 +354,13 @@ HTTP Status: 401 Unauthorized
 ## Endpoint: /loans
 ### Method: POST
 ### Description:
-Accepts a loan application from a logged in user, including the loan amount and tenure.
+Accepts a loan application from a logged in user, including the loan amount and Tenor.
 
 #### Request Body:
 ```json
 {
   "loan_amount": 1000,
-  "tenure": 12
+  "Tenor": 12
 }
 ```
 
@@ -376,7 +376,7 @@ HTTP Status: 201 Created
 "Loan_ID": 1,
 "User_ID": 1,
 "Amount": 1000,
-"Tenure": 12,
+"Tenor": 12,
 "Status": "Pending"
 }
 }
@@ -414,7 +414,7 @@ HTTP Status: 200 OK
 "loan": {
 "Loan_ID": 1,
 "Amount": 1000,
-"Tenure": 12,
+"Tenor": 12,
 "Result": "Accepted"
 }
 }
@@ -448,7 +448,7 @@ HTTP Status: 200 OK
 "details": {
 "Loan_ID": 1,
 "Amount": 5000,
-"Tenure": 12,
+"Tenor": 12,
 "Status": "Pending"
 }
 }
@@ -469,7 +469,7 @@ HTTP Status: 401 Unauthorized
 ## Endpoint: /loans/{loan_id}
 ### Method: GET
 #### Description:
-Returns the status of a specific loan, including the loan amount, remaining amount to be paid, and tenure.
+Returns the status of a specific loan, including the loan amount, remaining amount to be paid, and Tenor.
 
 #### Request Parameters:
 loan_id (required, integer): The ID of the loan for which the status is requested.
@@ -484,7 +484,7 @@ HTTP Status: 200 OK
 "User_ID": 1,
 "Amount": 100000,
 "Remaining_Amount": 50000,
-"Tenure": 12,
+"Tenor": 12,
 "Status": "Ongoing"
 }
 ```
