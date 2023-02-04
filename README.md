@@ -34,4 +34,5 @@ Potential High Level User Story:
 7. As a loan borrower, I want to be able to see the amount of loan I have borrowed and the amount I still need to pay.
 
 # Use Case
-![Use case diagram in PlantUML]
+![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7OsnZSCm303xd-8pWCK-bGDeX2n0KuHCGA84aOJNZvFgYWFkTdDS7htzFKIfHU5OxVzqd_O4M7YbAdx64SQBXZgh9neTBZca3AtmPlFjDMSJGfUXMsQJgj1H5FAWwAp-CrcmBknmfpP2upI_svsrtFm0)
+
