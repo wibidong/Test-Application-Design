@@ -272,7 +272,7 @@ Relationships:
 
 # API
 ## API Flowchart
-![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Sqz2iCm343XlQTe3v1exvH0A7Jhq0ieZd04jcHa2L-_FzCRtl0jtT4yQhdSM5A9WyBAzNHl_GvWEERCViOUdIofE8dFIIiCtlbGoV2cxjFQMk64pYhJHfspG4KMs3H59V7_sHYpOONrzPmUHKSwqNnkFtiXERxz0000)
+![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Sqn2iCm38NXlQTe3v1exvH0A7JhqBqeYd04jcHiYLo_QQStF7w-gJisZv8lDr7AiN6qVDtTQxy3D3p69Bx76fqRcJghZsG53bbbCqtmvkx3N6iMGXVJOU4kIQ6WA2n6KSxa_oo2gM61-VNyFB8Tj9_oM7_snBgT-mK0)
 
 ## API Definition
 ## Endpoint: /users/register
