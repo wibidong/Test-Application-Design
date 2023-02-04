@@ -128,7 +128,7 @@ Communication: This package includes the communication methods for sending notif
 Integration: This package includes the integration of the loan application system with other systems, such as mobile device biometric authentication, banking systems for loan processing, and third-party libraries for encryption and security.
 
 # Screen Flow Design
-![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ox13S8m303_J043jFxpAbBL1M01DxLIIuaTERQoFfJNdNIVMxgZUTHoUx2a4WU5bVlftleJm73CcVsCFJfPKd4IdvDM6BppePBXGzsdLsk54pghJ2jrpW8LMM3L59N4_sLbp8OLtic8P2iwO6F1SjdSheM5vFZn2m00)
+![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ssz3SD0243XFbCa0zZqgHp9oWB90XYZCz8Td3YGryzFzOfNVCi8zCXMBpTHghbpUhqU4NtS0HpFkKWSkULW9zDWZPcimIcRxAO5tZnYUlHUXJ34T5fvI55eA0ghKJRM-9zLi3WsU94pwxFQEVSVlB3kttu0)
 
 # Screen Behavior
 1. Start Screen:
