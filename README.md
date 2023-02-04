@@ -36,8 +36,35 @@ Potential High Level User Story:
 # Use Case
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7OsnZSCm303xd-8pWCK-bGDeX2n0KuHCGA84aOJNZvFgYWFkTdDS7htzFKIfHU5OxVzqd_O4M7YbAdx64SQBXZgh9neTBZca3AtmPlFjDMSJGfUXMsQJgj1H5FAWwAp-CrcmBknmfpP2upI_svsrtFm0)
 
+The User (U) has the ability to perform the following actions:
+
+Register: This allows the user to create an account in the system.
+Log In: The user logs in to the system using their email and password.
+View Loan Status: The user can view the current status of their loan application.
+Apply for Loan: The user can submit a loan application by entering their loan details.
+Receive Loan Approval: The user will receive a notification about the result of their loan application, whether it's approved or rejected.
+
+On the other hand, the Loan Application (LA) system has the following functionalities:
+
+Store User Data: The system stores the user's personal information and loan details.
+Authenticate User: The system verifies the user's identity before granting access to the system.
+Calculate Loan Eligibility: The system assesses the user's eligibility to receive a loan based on the information provided by the user.
+Notify User: The system sends a notification to the user about the result of their loan application.
+
 # High-level Design Architecture
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7OwnZSCm303xd-9_09dzLmxW4R80JH4I0OaIA39UFuchA-wAsvUZUVJsyoTABJA7jT_gFjS_WE6r5V4QPoms6kgilj7eSCafUMY19ozFZpcR4BeCJGSlAGeTHU4O59tLRtC85iCELKfDZL_SKhxRX4PLdCd3U9lVcPqrV_W6)
+
+User Interface: This package includes the screens and interfaces that the users interact with, such as the user registration screen, login screen, loan status screen, loan application screen, and loan notification screen.
+
+Business Logic: This package includes the core functionalities of the loan application system. It includes the user authentication, loan processing, loan approval or denial, loan notification management, and loan status management. It communicates with the other packages to provide an integrated system.
+
+Data Storage: This package includes the storage systems for user and loan data.
+
+Security: This package includes the security measures of the system, such as user authentication, data encryption, and secure communication.
+
+Communication: This package includes the communication methods for sending notifications to users, such as push notifications, SMS notifications, and email notifications.
+
+Integration: This package includes the integration of the loan application system with other systems, such as mobile device biometric authentication, banking systems for loan processing, and third-party libraries for encryption and security.
 
 # Screen Flow Design
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ox13S8m303_J043jFxpAbBL1M01DxLIIuaTERQoFfJNdNIVMxgZUTHoUx2a4WU5bVlftleJm73CcVsCFJfPKd4IdvDM6BppePBXGzsdLsk54pghJ2jrpW8LMM3L59N4_sLbp8OLtic8P2iwO6F1SjdSheM5vFZn2m00)
@@ -106,6 +133,52 @@ The loan management process is complete, and the user can view their loan inform
 
 # ERD
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Ssv3SCm343HFbCa0rZiKpc0HiW2j4J812HAu06ldwFwnI_URexgCVhjmL9wL0hjzzDzsHD0yKgD_OmZZBHCSH9FPGwu-E0wfS6RpBVNMfqBEa_PCXatWO4ia6U9GUB_ancRuW3IcjPFt4dgjny0)
+
+User Entity
+| Column Name      | Data Type | Key Type   | Description                                            |
+|------------------|-----------|-----------|--------------------------------------------------------|
+| User_ID          | Number    | Generated | Unique identifier for the user                         |
+| Name             | Text      | Required  | Name of the user                                       |
+| Email            | Text      | Required  | Email address of the user                              |
+| Phone            | Text      | Required  | Phone number of the user                               |
+| Address          | Text      | Optional  | Address of the user                                    |
+| Profile_Picture  | Text      | Optional  | Profile picture of the user                            |
+| KTP              | Text      | Optional  | KTP number of the user                                 |
+| Password         | Text      | Required  | Password of the user                                   |
+
+Loan Entity
+| Column Name                 | Data Type | Key Type   | Description                                            |
+|----------------------------|-----------|-----------|--------------------------------------------------------|
+| Loan_ID                   | Number    | Generated | Unique identifier for the loan                         |
+| User_ID                  | Number    | Foreign Key| User who applied for the loan                           |
+| Loan_Amount              | Number    | Optional  | Loan amount applied for                                 |
+| Loan_Tenor               | Number    | Optional  | Loan tenor in months                                   |
+| Loan_Status              | Text      | Optional  | Status of the loan                                     |
+| Loan_Repayment_Schedule  | Text      | Optional  | Repayment schedule for the loan                        |
+
+Payment Entity
+| Column Name      | Data Type | Key Type   | Description                                            |
+|------------------|-----------|-----------|--------------------------------------------------------|
+| Payment_ID       | Number    | Generated | Unique identifier for the payment                      |
+| Loan_ID          | Number    | Foreign Key| Loan associated with the payment                       |
+| Payment_Amount   | Number    | Optional  | Amount paid for the loan                               |
+| Payment_Date     | Date      | Optional  | Date of the payment                                    |
+| Payment_Status   | Text      | Optional  | Status of the payment                                  |
+
+Notification Entity
+| Column Name                | Data Type | Key Type   | Description                                            |
+|----------------------------|-----------|-----------|--------------------------------------------------------|
+| Notification_ID           | Number    | Generated | Unique identifier for the notification                 |
+| User_ID                  | Number    | Foreign Key| User who received the notification                      |
+| Notification_Type        | Text      | Optional  | Type of notification                                   |
+| Notification_Message      | Text      | Optional  | Message of the notification                            |
+| Notification_DateTime    | DateTime  | Optional  | Date and time of the notification                      |
+
+Relationships:
+
+A User can have multiple Loans.
+A Loan can have multiple Payments.
+A User can receive multiple Notifications.
 
 # API
 ## API Flowchart
