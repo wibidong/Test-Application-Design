@@ -1,3 +1,10 @@
+# Test-Application-Design
+Test Application Design PT. XYZ 
+
+## Authors
+
+* **Hermanus Wibisono**  - [wibidong](https://github.com/wibidong)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -33,38 +40,59 @@
       - [Security:](#security-2)
       - [Response:](#response-1)
   - [Endpoint: /loans](#endpoint-loans)
-    - [Method: POST](#method-post-2)
-    - [Description:](#description-3)
-      - [Request Body:](#request-body-2)
+    - [Method: GET](#method-get-1)
+      - [Description:](#description-3)
       - [Security:](#security-3)
       - [Response:](#response-2)
-  - [Endpoint: /loans/result](#endpoint-loansresult)
-    - [Method: GET](#method-get-1)
+  - [Endpoint: /loans](#endpoint-loans-1)
+    - [Method: POST](#method-post-2)
     - [Description:](#description-4)
-      - [Request Query:](#request-query)
+      - [Request Body:](#request-body-2)
       - [Security:](#security-4)
       - [Response:](#response-3)
-  - [Endpoint: /loans/check](#endpoint-loanscheck)
-    - [Method: GET](#method-get-2)
-    - [Description:](#description-5)
-      - [Request Query:](#request-query-1)
+  - [Endpoint: /loans/{id}](#endpoint-loansid)
+    - [Method: PUT](#method-put)
+      - [Description:](#description-5)
+      - [Request Body:](#request-body-3)
       - [Security:](#security-5)
       - [Response:](#response-4)
-  - [Endpoint: /loans/{loan_id}](#endpoint-loansloan_id)
-    - [Method: GET](#method-get-3)
-      - [Description:](#description-6)
-      - [Request Parameters:](#request-parameters)
+  - [Endpoint: /loans/result](#endpoint-loansresult)
+    - [Method: GET](#method-get-2)
+    - [Description:](#description-6)
+      - [Request Query:](#request-query)
       - [Security:](#security-6)
       - [Response:](#response-5)
+  - [Endpoint: /loans/check](#endpoint-loanscheck)
+    - [Method: GET](#method-get-3)
+    - [Description:](#description-7)
+      - [Request Query:](#request-query-1)
+      - [Security:](#security-7)
+      - [Response:](#response-6)
+  - [Endpoint: /loans/{loan_id}](#endpoint-loansloan_id)
+    - [Method: GET](#method-get-4)
+      - [Description:](#description-8)
+      - [Request Parameters:](#request-parameters)
+      - [Security:](#security-8)
+      - [Response:](#response-7)
+  - [Endpoint: /repayments](#endpoint-repayments)
+    - [Method: GET](#method-get-5)
+      - [Description:](#description-9)
+      - [Security:](#security-9)
+      - [Response:](#response-8)
+  - [Endpoint: /repayments/{id}](#endpoint-repaymentsid)
+    - [Method: GET](#method-get-6)
+      - [Description:](#description-10)
+      - [Request Parameters:](#request-parameters-1)
+      - [Security:](#security-10)
+      - [Response:](#response-9)
+  - [Endpoint: /notifications](#endpoint-notifications)
+    - [Method: GET](#method-get-7)
+      - [Description:](#description-11)
+      - [Request Query Parameters:](#request-query-parameters)
+      - [Security:](#security-11)
+      - [Response:](#response-10)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Test-Application-Design
-Test Application Design PT. XYZ 
-
-## Authors
-
-* **Hermanus Wibisono**  - [wibidong](https://github.com/wibidong)
 
 # Problem description
 
@@ -353,6 +381,37 @@ HTTP Status: 401 Unauthorized
 ```
 
 ## Endpoint: /loans
+### Method: GET
+#### Description:
+Retrieves information about all loans for the logged in user.
+
+#### Security:
+This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
+
+#### Response:
+HTTP Status: 200 OK
+```json
+{
+  "loans": [
+    {
+      "Loan_ID": 1,
+      "User_ID": 1,
+      "Amount": 1000,
+      "Tenor": 12,
+      "Status": "Approved"
+    },
+    {
+      "Loan_ID": 2,
+      "User_ID": 1,
+      "Amount": 2000,
+      "Tenor": 24,
+      "Status": "Rejected"
+    }
+  ]
+}
+```
+
+## Endpoint: /loans
 ### Method: POST
 ### Description:
 Accepts a loan application from a logged in user, including the loan amount and Tenor.
@@ -362,6 +421,12 @@ Accepts a loan application from a logged in user, including the loan amount and 
 {
   "loan_amount": 1000,
   "Tenor": 12
+}
+```
+HTTP Status: 401 Unauthorized
+```json
+{
+"message": "Please provide a valid JSON Web Token in the Authorization header"
 }
 ```
 
@@ -394,6 +459,54 @@ HTTP Status: 401 Unauthorized
 ```json
 {
 "message": "Please provide a valid JSON Web Token in the Authorization header"
+}
+```
+
+## Endpoint: /loans/{id}
+### Method: PUT
+#### Description:
+Updates information about a specific loan of a logged in user.
+
+#### Request Body:
+```json
+{
+  "loan_amount": 1000,
+  "Tenor": 12
+}
+```
+#### Security:
+This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
+
+#### Response:
+HTTP Status: 200 OK
+```json
+{
+"message": "Loan information updated successfully",
+"loan_application": {
+"Loan_ID": 1,
+"User_ID": 1,
+"Amount": 1000,
+"Tenor": 12,
+"Status": "Pending"
+}
+}
+```
+HTTP Status: 400 Bad Request
+```json
+{
+"message": "Invalid request body"
+}
+```
+HTTP Status: 401 Unauthorized
+```json
+{
+"message": "Please provide a valid JSON Web Token in the Authorization header"
+}
+```
+HTTP Status: 404 Not Found
+```json
+{
+"message": "Loan with the specified ID not found"
 }
 ```
 
@@ -501,5 +614,121 @@ HTTP Status: 404 Not Found
 ```json
 {
 "message": "Loan with ID 1 not found."
+}
+```
+
+## Endpoint: /repayments
+### Method: GET
+#### Description:
+Retrieves information about all repayments made by the logged in user.
+
+#### Security:
+This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
+
+#### Response:
+HTTP Status: 200 OK
+```json
+{
+  "repayments": [
+    {
+      "Repayment_ID": 1,
+      "Loan_ID": 1,
+      "User_ID": 1,
+      "Amount": 500,
+      "Date": "2022-01-01"
+    },
+    {
+      "Repayment_ID": 2,
+      "Loan_ID": 1,
+      "User_ID": 1,
+      "Amount": 500,
+      "Date": "2022-02-01"
+    }
+  ]
+}
+```
+HTTP Status: 401 Unauthorized
+```json
+{
+"message": "Please provide a valid JSON Web Token in the Authorization header"
+}
+```
+
+## Endpoint: /repayments/{id}
+### Method: GET
+#### Description:
+Retrieves information about a specific repayment made by a user.
+
+#### Request Parameters:
+id: The unique identifier of the repayment to be retrieved.
+#### Security:
+This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
+
+#### Response:
+HTTP Status: 200 OK
+```json
+{
+"message": "Success",
+"repayment": {
+"Repayment_ID": 1,
+"Loan_ID": 1,
+"Amount": 500,
+"Date": "2022-12-01"
+}
+}
+```
+HTTP Status: 400 Bad Request
+```json
+{
+"message": "Invalid repayment id"
+}
+```
+HTTP Status: 401 Unauthorized
+```json
+{
+"message": "Please provide a valid JSON Web Token in the Authorization header"
+}
+```
+HTTP Status: 404 Not Found
+```json
+{
+"message": "Repayment not found"
+}
+```
+## Endpoint: /notifications
+### Method: GET
+#### Description:
+Retrieves information about all notifications for the logged in user.
+
+#### Request Query Parameters:
+N/A
+
+#### Security:
+This endpoint requires authentication. The user must provide a valid JSON Web Token (JWT) in the Authorization header to access this endpoint.
+
+#### Response:
+HTTP Status: 200 OK
+```json
+{
+"notifications": [
+  {
+    "Notification_ID": 1,
+    "User_ID": 1,
+    "Message": "Your loan application has been approved!",
+    "Timestamp": "2022-12-01T12:00:00Z"
+  },
+  {
+    "Notification_ID": 2,
+    "User_ID": 1,
+    "Message": "Your loan repayment is due in 5 days.",
+    "Timestamp": "2022-12-02T12:00:00Z"
+  }
+]
+}
+```
+HTTP Status: 401 Unauthorized
+```json
+{
+"message": "Please provide a valid JSON Web Token in the Authorization header"
 }
 ```
