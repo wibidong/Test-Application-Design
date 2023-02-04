@@ -99,18 +99,18 @@ Potential High Level User Story:
 
 The User (U) has the ability to perform the following actions:
 
-Register: This allows the user to create an account in the system.
-Log In: The user logs in to the system using their email and password.
-View Loan Status: The user can view the current status of their loan application.
-Apply for Loan: The user can submit a loan application by entering their loan details.
-Receive Loan Approval: The user will receive a notification about the result of their loan application, whether it's approved or rejected.
+1. Register: This allows the user to create an account in the system.
+2. Log In: The user logs in to the system using their email and password or biometric.
+3. View Loan Status: The user can view the current status of their loan application.
+4. Apply for Loan: The user can submit a loan application by entering their loan details.
+5. Receive Loan Approval: The user will receive a notification about the result of their loan application, whether it's approved or rejected.
 
-On the other hand, the Loan Application (LA) system has the following functionalities:
+The Loan Application (LA) system has the following functionalities:
 
-Store User Data: The system stores the user's personal information and loan details.
-Authenticate User: The system verifies the user's identity before granting access to the system.
-Calculate Loan Eligibility: The system assesses the user's eligibility to receive a loan based on the information provided by the user.
-Notify User: The system sends a notification to the user about the result of their loan application.
+1. Store User Data: The system stores the user's personal information and loan details.
+2. Authenticate User: The system verifies the user's identity before granting access to the system.
+3. Calculate Loan Eligibility: The system assesses the user's eligibility to receive a loan based on the information provided by the user.
+4. Notify User: The system sends a notification to the user about the result of their loan application.
 
 # High-level Design Architecture
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7OwnZSCm303xd-9_09dzLmxW4R80JH4I0OaIA39UFuchA-wAsvUZUVJsyoTABJA7jT_gFjS_WE6r5V4QPoms6kgilj7eSCafUMY19ozFZpcR4BeCJGSlAGeTHU4O59tLRtC85iCELKfDZL_SKhxRX4PLdCd3U9lVcPqrV_W6)
