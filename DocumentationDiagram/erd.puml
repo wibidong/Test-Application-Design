@@ -1,0 +1,52 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity User {
+
+*User_ID : Number <<generated>>
+*Name : Text
+*Email : Text
+*Phone : Text
+Address : Text
+Profile_Picture : Text
+KTP : Text
+*Password : Text
+}
+
+entity Loan {
+
+*Loan_ID : Number <<generated>>
+*User_ID : Number <<FK>>
+Loan_Amount : Number
+Loan_Tenor : Number
+Loan_Status : Text
+Loan_Repayment_Schedule : Text
+}
+
+entity Payment {
+
+*Payment_ID : Number <<generated>>
+*Loan_ID : Number <<FK>>
+Payment_Amount : Number
+Payment_Date : Date
+Payment_Status : Text
+}
+
+entity Notification {
+
+*Notification_ID : Number <<generated>>
+*User_ID : Number <<FK>>
+Notification_Type : Text
+Notification_Message : Text
+Notification_DateTime : DateTime
+}
+
+User ||--o{ Loan
+Loan ||--o{ Payment
+User ||--o{ Notification
+
+@enduml
