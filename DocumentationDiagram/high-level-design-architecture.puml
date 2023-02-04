@@ -1,0 +1,48 @@
+@startuml
+title High-Level Design Architecture for Loan Application
+
+package "User Interface" {
+  [User Registration Screen]
+  [Login Screen]
+  [Loan Status Screen]
+  [Loan Application Screen]
+  [Loan Notification Screen]
+}
+
+package "Business Logic" {
+  [User Authentication]
+  [Loan Processing]
+  [Loan Approval/Denial]
+  [Loan Notification Management]
+  [Loan Status Management]
+}
+
+package "Data Storage" {
+  [User Data Storage]
+  [Loan Data Storage]
+}
+
+package "Security" {
+  [User Authentication]
+  [Data Encryption]
+  [Secure Communication]
+}
+
+package "Communication" {
+  [Push Notifications]
+  [SMS Notifications]
+  [Email Notifications]
+}
+
+package "Integration" {
+  [Integration with mobile device biometric authentication]
+  [Integration with banking systems for loan processing]
+  [Integration with third-party libraries for encryption and security]
+}
+
+[User Interface] --> [Business Logic]
+[Business Logic] --> [Data Storage]
+[Business Logic] --> [Security]
+[Business Logic] --> [Communication]
+[Business Logic] --> [Integration]
+@enduml
