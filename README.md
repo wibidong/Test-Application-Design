@@ -176,18 +176,39 @@ Notification Entity
 
 Relationships:
 
-A User can have multiple Loans.
-A Loan can have multiple Payments.
-A User can receive multiple Notifications.
+1. A User can have multiple Loans.
+2. A Loan can have multiple Payments.
+3. A User can receive multiple Notifications.
 
 # API
 ## API Flowchart
 ![Use case diagram in PlantUML](http://www.plantuml.com/plantuml/svg/7Sqz2iCm343XlQTe3v1exvH0A7Jhq0ieZd04jcHa2L-_FzCRtl0jtT4yQhdSM5A9WyBAzNHl_GvWEERCViOUdIofE8dFIIiCtlbGoV2cxjFQMk64pYhJHfspG4KMs3H59V7_sHYpOONrzPmUHKSwqNnkFtiXERxz0000)
 
 ## API Definition
-Endpoint: /users/register
-Method: POST
-Description: Registers a new user by accepting their personal information such as directory, email, phone number, and photo of their ID card.
+## Endpoint: /users/register
+### Method: POST
+### Description: 
+Registers a new user by accepting their personal information such as directory, email, phone number, and photo of their ID card.
+
+### Request Body:
+{
+  "name": "string",
+  "email": "string",
+  "password": "string",
+  "phone": "string",
+  "address": "string",
+  "profile_picture": "string",
+  "ktp": "string"
+}
+### Security:
+- API requests must include a valid JSON Web Token (JWT) in the header to authenticate the user.
+- The password must be hashed using a secure algorithm such as bcrypt before being stored in the database.
+### Responses:
+- 201: Created - The user was successfully registered.
+- 400: Bad Request - The request body was malformed or missing required fields.
+- 401: Unauthorized - The provided JWT was invalid or has expired.
+- 409: Conflict - The provided email address is already in use by another user.
+
 
 Endpoint: /users/login
 Method: POST
